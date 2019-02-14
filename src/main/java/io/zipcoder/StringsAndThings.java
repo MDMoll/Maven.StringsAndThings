@@ -18,9 +18,9 @@ public class StringsAndThings {
      */
     public Integer countYZ(String input) {
         int count = 0;
-        String[] words = input.split("\\s");
-        for (int i = 0; i < words.length; i++) {
-            if ((words[words.length - 1].equals("y")) || (words[words.length - 1].equals("z"))) {
+        String[] words = input.split("\\s+");
+        for (String word : words) {
+            if (word.charAt(word.length() - 1) == 'y' || word.charAt(word.length() - 1) == 'z') {
                 count++;
             }
         }
@@ -37,7 +37,7 @@ public class StringsAndThings {
      * removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove) {
-        return null;
+        return base.replace(remove, "");
     }
 
     /**
@@ -49,23 +49,24 @@ public class StringsAndThings {
      * containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input) {
-        /*String noSpaceInput = input.replaceAll("\\s", "");
+        String noSpaceInput = input.replaceAll("\\s", "");
         char firstChar = noSpaceInput.charAt(0);
         int isCount = 0;
         int notCount = 0;
-        for (int i = 0; i < noSpaceInput.length(); i++) {
+        for (int i = 1; i < noSpaceInput.length(); i++) {
             if ((firstChar == 'i' && noSpaceInput.charAt(i) == 's')) {
-                String charString = (new char[]{firstChar, noSpaceInput.charAt(i)});
+                // Character charString += (new char[]{firstChar, noSpaceInput.charAt(i)});
                 isCount++;
                 firstChar = noSpaceInput.charAt(i);
             }
             if (firstChar == 'n' && noSpaceInput.charAt(i) == 'o' && noSpaceInput.charAt(i + 1) == 't') {
                 notCount++;
                 firstChar = noSpaceInput.charAt(i);
+            } else {
+                firstChar = noSpaceInput.charAt(i);
             }
         }
-        return isCount == notCount;*/
-        return null;
+        return isCount == notCount;
     }
 
     /**
@@ -78,7 +79,6 @@ public class StringsAndThings {
     public Boolean gIsHappy(String input) {
         char firstLetter = input.charAt(0);
         int lastIndex = input.length() - 1;
-        int happyCount = 0;
         boolean happy = true;
         int i = 1;
         while (i != lastIndex)
@@ -86,12 +86,11 @@ public class StringsAndThings {
                 firstLetter = input.charAt(i);
                 happy = true;
                 i++;
-            }
-           else if (firstLetter != 'g' && input.charAt(i) == 'g') {
-                    firstLetter = input.charAt(i);
-                    happy = false;
-                    i++;
-                } else {
+            } else if (firstLetter != 'g' && input.charAt(i) == 'g') {
+                firstLetter = input.charAt(i);
+                happy = false;
+                i++;
+            } else {
                 firstLetter = input.charAt(i);
                 i++;
             }
@@ -124,18 +123,3 @@ public class StringsAndThings {
         return count;
     }
 }
-
-        /*String string;
-        String firstString = String.valueOf(input.charAt(0));
-        int triple = 0;
-        getStringCount() {
-            for (int i = 0; i < input.length(); i++) {
-                String string = String.valueOf(input.charAt(i));
-                if (Objects.equals(firstString, previousString)) {
-                    string twoMatch += firstString + previousString;
-                    string = previousString;
-                if (Object.equals(previousString, string))
-            }
-        }
-        return triple;
-    }*/
